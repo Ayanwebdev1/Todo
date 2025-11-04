@@ -10,10 +10,10 @@ const Main = () => {
   const [editindex, seteditindex] = useState(null)
 
 
-useEffect(() => {
-  const saved = JSON.parse(localStorage.getItem("todos")) || [];
-  settodos(saved);
-}, [])
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("todos")) || [];
+    settodos(saved);
+  }, [])
 
   const Savetolc = (data) => {
     localStorage.setItem("todos", JSON.stringify(data))
@@ -22,37 +22,37 @@ useEffect(() => {
 
   const AddorUpdate = () => {
 
-  //   if (todo === "") return
-  //   if (editindex !== null) {
-  //     const newTodos = [...todos]
-  //     newTodos[editindex].text = todo
-  //     settodos(newTodos)
+    //   if (todo === "") return
+    //   if (editindex !== null) {
+    //     const newTodos = [...todos]
+    //     newTodos[editindex].text = todo
+    //     settodos(newTodos)
 
-  //     Savetolc(newTodos)
+    //     Savetolc(newTodos)
 
-  //     seteditindex(null)
-  //     settodo("")
+    //     seteditindex(null)
+    //     settodo("")
 
-  //   } else {
-  //     const newTodos = ([...todos, { text: todo, completed: false }])
-  //     settodos(newTodos)
-  //     Savetolc(newTodos)
-  //     settodo("")
-      
-  //   }
-  if(todo==="")return
-  if(editindex!==null){
-    const newTodos = [...todos]
-    newTodos[editindex].text = todo
-    settodos(newTodos)
-    Savetolc(newTodos)
-    settodo("")
-  }else{
-    const newTodos = [...todos,{text:todo, completed:false}]
-    settodos(newTodos)
-    Savetolc(newTodos)
-    settodo("")
-  }
+    //   } else {
+    //     const newTodos = ([...todos, { text: todo, completed: false }])
+    //     settodos(newTodos)
+    //     Savetolc(newTodos)
+    //     settodo("")
+
+    //   }
+    if (todo === "") return
+    if (editindex !== null) {
+      const newTodos = [...todos]
+      newTodos[editindex].text = todo
+      settodos(newTodos)
+      Savetolc(newTodos)
+      settodo("")
+    } else {
+      const newTodos = [...todos, { text: todo, completed: false }]
+      settodos(newTodos)
+      Savetolc(newTodos)
+      settodo("")
+    }
 
   }
 
@@ -119,19 +119,42 @@ useEffect(() => {
       <div>
         <ul className="flex flex-col items-center">
           {todos.map((t, index) => (
+            //     <li
+            //       key={index}
+            //       className={`border mt-7 p-5 w-[90vw] overflow-hidden min-h-3 m-auto flex justify-between items-center 
+            // ${isDark ? "bg-gray-400" : "bg-white"}`}
+            //     >
+            //       {/* Left side (checkbox + text) */}
+            //       <div className="flex items-center gap-3">
+            //         <input
+            //           type="checkbox"
+            //           checked={t.completed} // har task ka completed state
+            //           onChange={() => toggleComplete(index)} // function to toggle
+            //         />
+            //         <span className={t.completed ? "line-through" : ""}>{t.text}</span>
+            //       </div>
+
+            //       {/* Right side (icons) */}
+            //       <div className="flex items-center gap-3">
+            //         <Image className='min-w-5 min-h-5' onClick={() => Edit(index)} width={20} height={20} alt="Edit" src="/Edit.png" />
+            //         <Image className='min-w-5 min-h-5' onClick={() => Delete(index)} width={20} height={20} alt="Delete" src="/Delete.png" />
+            //       </div>
+            //     </li>
             <li
               key={index}
               className={`border mt-7 p-5 w-[90vw] overflow-hidden min-h-3 m-auto flex justify-between items-center 
-        ${isDark ? "bg-gray-400" : "bg-white"}`}
+    ${isDark ? "bg-gray-400" : "bg-white"}`}
             >
               {/* Left side (checkbox + text) */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap">
                 <input
                   type="checkbox"
                   checked={t.completed} // har task ka completed state
                   onChange={() => toggleComplete(index)} // function to toggle
                 />
-                <span className={t.completed ? "line-through" : ""}>{t.text}</span>
+                <span className={`${t.completed ? "line-through" : ""} wrap-break-word`}>
+                  {t.text}
+                </span>
               </div>
 
               {/* Right side (icons) */}
@@ -140,6 +163,7 @@ useEffect(() => {
                 <Image className='min-w-5 min-h-5' onClick={() => Delete(index)} width={20} height={20} alt="Delete" src="/Delete.png" />
               </div>
             </li>
+
           ))}
         </ul>
 
