@@ -121,7 +121,7 @@ useEffect(() => {
           {todos.map((t, index) => (
             <li
               key={index}
-              className={`border mt-7 p-5 w-[95%] m-auto flex justify-between items-center 
+              className={`border mt-7 p-5 w-[90vw] overflow-hidden min-h-3 m-auto flex justify-between items-center 
         ${isDark ? "bg-gray-400" : "bg-white"}`}
             >
               {/* Left side (checkbox + text) */}
@@ -136,8 +136,8 @@ useEffect(() => {
 
               {/* Right side (icons) */}
               <div className="flex items-center gap-3">
-                <Image onClick={() => Edit(index)} width={20} height={20} alt="Edit" src="/Edit.png" />
-                <Image onClick={() => Delete(index)} width={20} height={20} alt="Delete" src="/Delete.png" />
+                <Image className='min-w-5 min-h-5' onClick={() => Edit(index)} width={20} height={20} alt="Edit" src="/Edit.png" />
+                <Image className='min-w-5 min-h-5' onClick={() => Delete(index)} width={20} height={20} alt="Delete" src="/Delete.png" />
               </div>
             </li>
           ))}
